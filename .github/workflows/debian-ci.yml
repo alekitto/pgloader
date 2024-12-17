@@ -31,3 +31,13 @@ jobs:
 
       - name: Autopkgtest
         run: sudo autopkgtest ./ ../pgloader_*_amd64.deb -- null
+
+      - name: Move packages in dir
+        run: sudo mv ../pgloader_*.deb ./
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: debpkgs
+          path: pgloader_*.deb
+
